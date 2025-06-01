@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>仙人チューブ</title>
+  <link rel="stylesheet" href="https://unpkg.com/missing.css" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="icon.png" />
+  <meta name="theme-color" content="#111" />
+  <style>
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+    header {
+      background-color: #111;
+      padding: 1em;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    header h1 {
+      font-size: 1.5em;
+      margin: 0.2em;
+    }
+    .nav-buttons {
+      display: flex;
+      gap: 1em;
+    }
+    .nav-buttons button {
+      background-color: #222;
+      color: #fff;
+      border: none;
+      padding: 0.6em 1em;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    iframe {
+      width: 100%;
+      height: calc(100vh - 70px);
+      border: none;
+    }
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+      }
+      iframe {
+        height: calc(100vh - 140px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>仙人チューブ</h1>
+    <div class="nav-buttons">
+      <button onclick="loadVideo()">動画</button>
+      <button onclick="loadGame()">ゲーム</button>
+      <button onclick="loadChat()">チャット</button>
+    </div>
+  </header>
+
+  <iframe id="content-frame" src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?rel=0&autoplay=0" allowfullscreen></iframe>
+
+  <script>
+    function loadVideo() {
+      document.getElementById('content-frame').src = "https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?rel=0&autoplay=0";
+    }
+    function loadGame() {
+      document.getElementById('content-frame').src = "https://wkt-uuiv.onrender.com/game/games/snowrider";
+    }
+    function loadChat() {
+      document.getElementById('content-frame').src = "https://senninsystems.onrender.com";
+    }
+
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js')
+        .then(reg => console.log('Service Worker 登録成功:', reg.scope))
+        .catch(err => console.error('Service Worker 登録失敗:', err));
+    }
+  </script>
+</body>
+</html>
